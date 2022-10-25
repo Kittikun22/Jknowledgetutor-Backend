@@ -4,6 +4,7 @@ var omise = require('omise')({
 });
 
 const checkoutCreditCard = async (req, res, next) => {
+    console.log(req);
     const { email, name, amount, token } = req.body
     try {
         const customer = await omise.customers.create({

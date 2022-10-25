@@ -58,10 +58,9 @@ const Signin = (req, res) => {
 
 const authToken = (req, res) => {
     try {
-        const token = req.body.token
-        console.log(token);
+        const token = req.body.headers.Authorization.split(' ')[1];
         const decoded = jwt.verify(token, secret);
-        res.send({ status: 'ok', decoded })
+        res.send({ status: 'ok', decoded });
     } catch (err) {
         res.send({ status: 'error', message: err.message })
     }
