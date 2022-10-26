@@ -7,6 +7,17 @@ const db = mysql.createConnection({
     database: "jknowledge"
 });
 
+const getACourse = (req, res) => {
+    const courses_id = req.params.courses_id;
+    db.query("SELECT * WHERE courses_id = ? FROM j_courses", courses_id, (err, result) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.send(result);
+        }
+    })
+}
+
 
 const getCourses = (req, res) => {
     db.query("SELECT * FROM j_courses", (err, result) => {
@@ -38,5 +49,6 @@ const createCourses = (req, res) => {
 
 module.exports = {
     getCourses,
-    createCourses
+    createCourses,
+    getACourse
 };
